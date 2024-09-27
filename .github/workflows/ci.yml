@@ -1,4 +1,4 @@
-name: Booking Service CI
+name: Search Service CI
 
 on:
   push:
