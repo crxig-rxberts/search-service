@@ -3,7 +3,7 @@ const ElasticsearchService = require('../services/elasticsearchService');
 const logger = require('../utils/logger');
 
 const elasticsearchConfig = {
-  node: process.env.ELASTICSEARCH_URL || 'http://host.docker.internal:9200',
+  node: process.env.ELASTICSEARCH_URL || 'http://localhost:9200',
   maxRetries: 5,
   requestTimeout: 60000,
   ssl: {
@@ -16,6 +16,8 @@ const client = new Client(elasticsearchConfig);
 async function testConnection() {
   try {
     logger.info('Attempting to connect to Elasticsearch...');
+    await client.ping();
+    logger.info('Elasticsearch ping successful');
     const nodeInfo = await client.info();
     if (!nodeInfo || !nodeInfo.body || !nodeInfo.body.version || !nodeInfo.body.version.number) {
       throw new Error('Unexpected response from Elasticsearch');

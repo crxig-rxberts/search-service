@@ -16,7 +16,7 @@
   },
   "private": true,
   "dependencies": {
-    "@elastic/elasticsearch": "8.15.0",
+    "@elastic/elasticsearch": "7.10.0",
     "axios": "^1.7.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

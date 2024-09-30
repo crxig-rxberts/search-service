@@ -1,7 +1,7 @@
 const { client } = require('../config/elasticsearch');
 const ElasticsearchService = require('./elasticsearchService');
 const esService = new ElasticsearchService(client);
-const logger = require('../utils/logger');
+const logger = require('../utils/logger');0
 
 class SearchService {
   static async submitData(data) {

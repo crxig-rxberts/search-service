@@ -1,8 +1,8 @@
-import { BadGatewayError, NotFoundError } from '../middleware/errors';
-import SearchService from '../services/searchService';
-import logger from '../utils/logger';
+const { BadGatewayError, NotFoundError } = require('../middleware/errors');
+const SearchService = require('../services/searchService');
+const logger = require('../utils/logger');
 
-export const submitData = async (req, res, next) => {
+const submitData = async (req, res, next) => {
   try {
     const result = await SearchService.submitData(req.body);
     res.status(201).json({
@@ -16,7 +16,7 @@ export const submitData = async (req, res, next) => {
   }
 };
 
-export const searchData = async (req, res, next) => {
+const searchData = async (req, res, next) => {
   try {
     const { query, category } = req.query;
     const result = await SearchService.searchData(query, category);
@@ -31,7 +31,7 @@ export const searchData = async (req, res, next) => {
   }
 };
 
-export const deleteData = async (req, res, next) => {
+const deleteData = async (req, res, next) => {
   try {
     const { id } = req.params;
     const result = await SearchService.deleteData(id);
@@ -53,4 +53,10 @@ export const deleteData = async (req, res, next) => {
       next(new BadGatewayError('Error deleting data'));
     }
   }
+};
+
+module.exports = {
+  submitData,
+  searchData,
+  deleteData
 };
